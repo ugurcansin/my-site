@@ -1,3 +1,6 @@
+export const PRICE = 2.99;
+export const ORIGINAL_PRICE = 9.99;
+
 export type Template = {
     slug: string;
     title: string;

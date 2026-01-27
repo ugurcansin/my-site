@@ -13,10 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "PutMyFaceIn - Face Swap Templates (Only $2.99)",
+    title: "PutMyFaceIn — Face-swap video template ($2.99)",
     description:
-        "Pick a template, upload your face, and get your face swap video. One time purchase. No subscription.",
+        "Pick a template, upload a selfie, and get your face-swap video by email. One-time purchase. No subscription.",
 };
+
 
 export default function RootLayout({
     children,
