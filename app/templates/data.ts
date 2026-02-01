@@ -21,7 +21,17 @@ export const templates: Template[] = [
         badge: "TRENDING",
         video: "/templates/t1.mp4",
     },
+    {
+        slug: "template-2",
+        title: "Template 2",
+        desc: "30s viral 9:16 template for Reels / TikTok / Shorts.",
+        img: "/templates/template-2.png",
+        poster: "/templates/template-2.png",
+        badge: "NEW",
+        video: "/templates/t2.mp4",
+    },
 ];
+
 
 export type Review = {
     name: string;

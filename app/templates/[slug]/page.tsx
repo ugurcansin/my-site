@@ -154,7 +154,8 @@ export default async function TemplatePage({
                                 href="/thank-you"
                                 className="rounded-2xl bg-indigo-600 px-5 py-4 text-center text-sm font-semibold text-white hover:bg-indigo-500 transition"
                             >
-                                Continue to payment — ${PRICE.toFixed(2)}
+                                Continue — ${PRICE.toFixed(2)} →
+
                             </Link>
 
                             <a
@@ -168,12 +169,10 @@ export default async function TemplatePage({
                         <div className="mt-4 rounded-2xl bg-black/5 p-4">
                             <p className="text-sm font-semibold">Delivery time</p>
                             <p className="mt-1 text-sm text-slate-600">
-                                Usually under <span className="font-semibold">2 hours</span> (sometimes
-                                5–10 minutes).
+                                Usually <span className="font-semibold">10–30 minutes</span>. During busy times, up to{" "}
+                                <span className="font-semibold">2 hours</span>.
                             </p>
-                            <p className="mt-2 text-xs text-slate-500">
-                                Payments are being connected. This button currently shows the thank-you flow.
-                            </p>
+                            
                         </div>
                     </div>
                 </section>
@@ -186,8 +185,13 @@ export default async function TemplatePage({
                         <div className="rounded-2xl border border-black/10 bg-white p-4 shadow-sm">
                             <p className="text-sm font-semibold">Do you store my photo?</p>
                             <p className="mt-1 text-sm text-slate-600">
-                                We only use it to generate your video. (We’ll add full policy text before scaling.)
+                                We use your photo only to generate your video and deliver your order. See our{" "}
+                                <Link className="underline hover:text-slate-900" href="/privacy">
+                                    Privacy Policy
+                                </Link>.
                             </p>
+
+
                         </div>
 
                         <div className="rounded-2xl border border-black/10 bg-white p-4 shadow-sm">
@@ -227,9 +231,10 @@ export default async function TemplatePage({
                 </section>
 
                 <div className="mt-10 text-center">
-                    <a className="text-sm text-slate-700 hover:text-slate-950" href="mailto:support@putmyfacein.com">
-                        Need help? Email support@putmyfacein.com
-                    </a>
+                    <Link className="text-sm text-slate-700 hover:text-slate-950" href="/contact">
+                        Help
+                    </Link>
+
                 </div>
             </main>
         </div>
