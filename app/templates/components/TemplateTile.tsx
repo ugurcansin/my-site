@@ -18,7 +18,6 @@ export default function TemplateTile({ t }: { t: Template }) {
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const canPlayVideo = Boolean(t.video);
 
-    // Mobile behavior: 1st tap = preview, 2nd tap = open
     const [armedToOpen, setArmedToOpen] = useState(false);
     const [isPreviewing, setIsPreviewing] = useState(false);
     const timeoutRef = useRef<number | null>(null);
@@ -60,15 +59,12 @@ export default function TemplateTile({ t }: { t: Template }) {
         setIsPreviewing(false);
     };
 
-    // Desktop hover
     const onMouseEnter = () => playPreview();
     const onMouseLeave = () => stopPreview();
 
-    // Mobile: first tap previews (no navigation), second tap navigates
     const onClick = async (e: MouseEvent) => {
         if (!canPlayVideo) return;
-
-        if (armedToOpen) return; // second click opens
+        if (armedToOpen) return;
 
         e.preventDefault();
         setArmedToOpen(true);
@@ -81,7 +77,7 @@ export default function TemplateTile({ t }: { t: Template }) {
 
     const onTouchStart = async (e: TouchEvent) => {
         if (!canPlayVideo) return;
-        if (armedToOpen) return; // next tap should open
+        if (armedToOpen) return;
 
         e.preventDefault();
         setArmedToOpen(true);
@@ -105,17 +101,15 @@ export default function TemplateTile({ t }: { t: Template }) {
         >
             <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-white/70 shadow-sm transition hover:shadow-md hover:bg-white">
                 <div className="relative aspect-[9/16] w-full overflow-hidden">
-                    {/* Poster / image (always behind) */}
                     <Image
                         src={posterSrc}
                         alt={t.title}
                         fill
                         className="object-cover transition duration-500 group-hover:scale-[1.02]"
-                        sizes="(max-width: 768px) 100vw, 420px"
+                        sizes="(max-width: 768px) 50vw, 420px"
                         priority
                     />
 
-                    {/* Video overlay (shows on hover OR while previewing on mobile) */}
                     {canPlayVideo ? (
                         <video
                             ref={videoRef}
@@ -129,25 +123,33 @@ export default function TemplateTile({ t }: { t: Template }) {
                         />
                     ) : null}
 
-                    {/* soft overlay for readability */}
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
 
                     {t.badge ? (
-                        <div className="absolute left-3 top-3 rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold tracking-wide text-slate-900">
+                        <div className="absolute left-2 top-2 sm:left-3 sm:top-3 rounded-full bg-white/85 px-2.5 py-1 text-[10px] sm:text-[11px] font-semibold tracking-wide text-slate-900">
                             {t.badge}
                         </div>
                     ) : null}
 
-                    <div className="absolute bottom-0 left-0 right-0 p-3">
+                    {/* Tighter bottom padding/text on mobile, same on desktop */}
+                    <div className="absolute bottom-0 left-0 right-0 p-2.5 sm:p-3">
                         <div className="flex items-start justify-between gap-2">
-                            <h3 className="text-sm font-semibold leading-snug text-white">{t.title}</h3>
-                            <span className="mt-0.5 text-[11px] text-white/70 whitespace-nowrap">9:16</span>
+                            <h3 className="text-[12px] sm:text-sm font-semibold leading-snug text-white">
+                                {t.title}
+                            </h3>
+                            <span className="mt-0.5 text-[10px] sm:text-[11px] text-white/70 whitespace-nowrap">
+                                9:16
+                            </span>
                         </div>
 
-                        <p className="mt-1 line-clamp-2 text-xs text-white/80">{t.desc}</p>
+                        <p className="mt-1 line-clamp-2 text-[10px] sm:text-xs text-white/80">
+                            {t.desc}
+                        </p>
 
                         {canPlayVideo ? (
-                            <p className="mt-1 text-[10px] text-white/70">Tap to preview · Tap again to open</p>
+                            <p className="mt-1 text-[9px] sm:text-[10px] text-white/70">
+                                Tap to preview · Tap again to open
+                            </p>
                         ) : null}
                     </div>
                 </div>

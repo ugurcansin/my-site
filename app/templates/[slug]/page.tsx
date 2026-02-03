@@ -45,8 +45,9 @@ export default async function TemplatePage({
                 <div className="absolute bottom-[-260px] right-[-260px] h-[760px] w-[760px] rounded-full bg-sky-200/40 blur-3xl" />
             </div>
 
+            {/* Slightly shorter header on mobile */}
             <header className="sticky top-0 z-50 border-b border-black/5 bg-white/70 backdrop-blur-xl">
-                <div className="mx-auto flex max-w-xl items-center justify-between px-4 py-4">
+                <div className="mx-auto flex max-w-xl items-center justify-between px-4 py-3 sm:py-4">
                     <Link href="/#templates" className="text-sm text-slate-700 hover:text-slate-950">
                         ← Back
                     </Link>
@@ -60,11 +61,13 @@ export default async function TemplatePage({
                 </div>
             </header>
 
-            <main className="mx-auto max-w-xl px-4 pt-6 pb-28">
+            {/* Tighter top padding so the CTA appears sooner */}
+            <main className="mx-auto max-w-xl px-4 pt-4 pb-24 sm:pt-6 sm:pb-28">
                 {/* PREVIEW */}
                 <section>
-                    <div className="rounded-3xl border border-black/10 bg-white/80 p-4 shadow-sm">
-                        <div className="mx-auto w-full max-w-[320px]">
+                    <div className="rounded-3xl border border-black/10 bg-white/80 p-3 sm:p-4 shadow-sm">
+                        {/* Smaller preview on mobile + a bit bigger on desktop */}
+                        <div className="mx-auto w-full max-w-[240px] sm:max-w-[280px]">
                             <div className="relative aspect-[9/16] overflow-hidden rounded-2xl border border-black/10">
                                 {t.video ? (
                                     <video
@@ -81,31 +84,33 @@ export default async function TemplatePage({
                             </div>
                         </div>
 
-                        <p className="mt-3 text-center text-xs text-slate-500">
+                        <p className="mt-2 text-center text-[11px] sm:text-xs text-slate-500">
                             9:16 preview • TikTok / Reels / Shorts
                         </p>
                     </div>
                 </section>
 
-                {/* TITLE + DESC */}
-                <section className="mt-6">
-                    <h1 className="text-2xl font-semibold">{t.title}</h1>
-                    <p className="mt-2 text-slate-600">{t.desc}</p>
+                {/* TITLE + DESC (smaller on mobile) */}
+                <section className="mt-4 sm:mt-6">
+                    <h1 className="text-xl sm:text-2xl font-semibold">{t.title}</h1>
+                    <p className="mt-1.5 text-sm sm:text-base text-slate-600">{t.desc}</p>
 
-                    <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
+                    <div className="mt-3 flex flex-wrap gap-2 text-[11px] sm:text-xs text-slate-600">
                         <span className="rounded-full border border-black/10 bg-white px-3 py-1">
                             One-time payment
                         </span>
                         <span className="rounded-full border border-black/10 bg-white px-3 py-1">
                             No subscription
                         </span>
-                        <span className="rounded-full border border-black/10 bg-white px-3 py-1">9:16</span>
+                        <span className="rounded-full border border-black/10 bg-white px-3 py-1">
+                            9:16
+                        </span>
                     </div>
                 </section>
 
-                {/* BUY + UPLOAD */}
-                <section className="mt-8">
-                    <div className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm">
+                {/* BUY + UPLOAD (pulled up + slightly tighter) */}
+                <section className="mt-5 sm:mt-7">
+                    <div className="rounded-3xl border border-black/10 bg-white p-4 sm:p-5 shadow-sm">
                         <div className="flex items-end justify-between gap-3">
                             <div>
                                 <div className="text-sm font-semibold">One-time purchase</div>
@@ -115,70 +120,74 @@ export default async function TemplatePage({
                             </div>
 
                             <div className="text-right">
-                                <div className="text-xs text-slate-500 line-through">${ORIGINAL_PRICE.toFixed(2)}</div>
-                                <div className="text-3xl font-semibold">${PRICE.toFixed(2)}</div>
+                                <div className="text-[11px] sm:text-xs text-slate-500 line-through">
+                                    ${ORIGINAL_PRICE.toFixed(2)}
+                                </div>
+                                <div className="text-2xl sm:text-3xl font-semibold">
+                                    ${PRICE.toFixed(2)}
+                                </div>
                             </div>
                         </div>
 
-                        {/* STEP 1: upload */}
-                        <div className="mt-5 rounded-2xl border border-black/10 bg-white/70 p-4">
+                        {/* STEP 1 */}
+                        <div className="mt-4 rounded-2xl border border-black/10 bg-white/70 p-3 sm:p-4">
                             <p className="text-sm font-semibold">1) Upload your selfie</p>
                             <p className="mt-1 text-xs text-slate-600">
                                 Clear front-facing photo works best. JPG/PNG.
                             </p>
                             <input
-                                className="mt-3 w-full rounded-xl border border-black/10 bg-white px-3 py-2 text-sm"
+                                className="mt-2.5 w-full rounded-xl border border-black/10 bg-white px-3 py-2 text-sm"
                                 type="file"
                                 accept="image/*"
                                 required
                             />
                         </div>
 
-                        {/* STEP 2: email */}
-                        <div className="mt-3 rounded-2xl border border-black/10 bg-white/70 p-4">
+                        {/* STEP 2 */}
+                        <div className="mt-3 rounded-2xl border border-black/10 bg-white/70 p-3 sm:p-4">
                             <p className="text-sm font-semibold">2) Your email</p>
                             <p className="mt-1 text-xs text-slate-600">
                                 We’ll send your finished video as a download link.
                             </p>
                             <input
-                                className="mt-3 w-full rounded-xl border border-black/10 bg-white px-3 py-2 text-sm"
+                                className="mt-2.5 w-full rounded-xl border border-black/10 bg-white px-3 py-2 text-sm"
                                 type="email"
                                 placeholder="you@email.com"
                                 required
                             />
                         </div>
 
-                        {/* STEP 3: payment (placeholder now) */}
+                        {/* CTA buttons (shorter on mobile, same on desktop) */}
                         <div className="mt-4 grid gap-3">
                             <Link
                                 href="/thank-you"
-                                className="rounded-2xl bg-indigo-600 px-5 py-4 text-center text-sm font-semibold text-white hover:bg-indigo-500 transition"
+                                className="rounded-2xl bg-indigo-600 px-5 py-3.5 sm:py-4 text-center text-sm font-semibold text-white hover:bg-indigo-500 transition"
                             >
                                 Continue — ${PRICE.toFixed(2)} →
-
                             </Link>
 
                             <a
-                                href="mailto:support@putmyfacein.com?subject=PutMyFaceIn%20Order%20Help&body=Hi%2C%20I%20need%20help%20placing%20an%20order%20for%20Template%201.%20Thanks!"
-                                className="rounded-2xl border border-black/10 bg-white px-5 py-4 text-center text-sm font-semibold hover:bg-slate-50 transition"
+                                href={`mailto:support@putmyfacein.com?subject=PutMyFaceIn%20Order%20Help&body=Hi%2C%20I%20need%20help%20placing%20an%20order%20for%20${encodeURIComponent(
+                                    t.title
+                                )}.%20Thanks!`}
+                                className="rounded-2xl border border-black/10 bg-white px-5 py-3.5 sm:py-4 text-center text-sm font-semibold hover:bg-slate-50 transition"
                             >
                                 Having trouble? Email support
                             </a>
                         </div>
 
-                        <div className="mt-4 rounded-2xl bg-black/5 p-4">
+                        <div className="mt-4 rounded-2xl bg-black/5 p-3 sm:p-4">
                             <p className="text-sm font-semibold">Delivery time</p>
                             <p className="mt-1 text-sm text-slate-600">
                                 Usually <span className="font-semibold">10–30 minutes</span>. During busy times, up to{" "}
                                 <span className="font-semibold">2 hours</span>.
                             </p>
-                            
                         </div>
                     </div>
                 </section>
 
-                {/* FAQ (trust, no fake claims) */}
-                <section className="mt-10">
+                {/* FAQ */}
+                <section className="mt-9 sm:mt-10">
                     <h2 className="text-lg font-semibold">Quick FAQ</h2>
 
                     <div className="mt-4 grid gap-3">
@@ -190,8 +199,6 @@ export default async function TemplatePage({
                                     Privacy Policy
                                 </Link>.
                             </p>
-
-
                         </div>
 
                         <div className="rounded-2xl border border-black/10 bg-white p-4 shadow-sm">
@@ -211,7 +218,7 @@ export default async function TemplatePage({
                 </section>
 
                 {/* REVIEWS */}
-                <section className="mt-10">
+                <section className="mt-9 sm:mt-10">
                     <div className="flex justify-between items-end">
                         <h2 className="text-lg font-semibold">Customer reviews</h2>
                         <span className="text-xs text-slate-500">{reviews.length} reviews</span>
@@ -234,7 +241,6 @@ export default async function TemplatePage({
                     <Link className="text-sm text-slate-700 hover:text-slate-950" href="/contact">
                         Help
                     </Link>
-
                 </div>
             </main>
         </div>

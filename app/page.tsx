@@ -44,12 +44,11 @@ export default function Home() {
 
                 {primary ? (
                     <Link
-                        href="/#templates"
+                        href="/templates"
                         className="mt-5 inline-flex w-full items-center justify-center rounded-2xl bg-indigo-600 px-6 py-4 text-sm font-semibold text-white hover:bg-indigo-500 transition"
                     >
                         Choose a template — ${PRICE.toFixed(2)} →
                     </Link>
-
                 ) : null}
 
                 <p className="mt-3 text-[12px] text-slate-600">
@@ -68,8 +67,8 @@ export default function Home() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
+                {/* Mobile 2 columns, desktop unchanged */}
+                <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
                     {templates.map((t) => (
                         <div key={t.slug} className="text-center">
                             <TemplateTile t={t} />
@@ -95,22 +94,23 @@ export default function Home() {
                             <div className="mt-4">
                                 <Link
                                     href={`/templates/${t.slug}`}
-                                    className="inline-flex w-full items-center justify-center rounded-2xl bg-indigo-600 px-6 py-4 text-sm font-semibold text-white hover:bg-indigo-500 transition"
+                                    className="inline-flex w-full items-center justify-center rounded-2xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white hover:bg-indigo-500 transition sm:px-6 sm:py-4"
                                 >
                                     Continue — ${PRICE.toFixed(2)} →
                                 </Link>
-
-                                <div className="mt-6 text-center">
-                                    <a
-                                        href="mailto:support@putmyfacein.com?subject=PutMyFaceIn%20Help"
-                                        className="text-sm text-slate-600 hover:text-slate-900 underline"
-                                    >
-                                        Questions? Email support
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     ))}
+                </div>
+
+                {/* One support link for the whole section (cleaner on mobile) */}
+                <div className="mt-6 text-center">
+                    <a
+                        href="mailto:support@putmyfacein.com?subject=PutMyFaceIn%20Help"
+                        className="text-sm text-slate-600 hover:text-slate-900 underline"
+                    >
+                        Questions? Email support
+                    </a>
                 </div>
             </section>
 
